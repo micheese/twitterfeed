@@ -1,26 +1,37 @@
-/**
- * Created by michael on 2015-01-17.
- */
-/*$(function () {
-    $('.tlt').textillate({ loop: true });
-})*/
+var i = 0;
+
+function get_tweets(){
+    $.ajax({
+        type: "GET",
+        url: 'twuserlookup.php',
+        datatype: 'json'
+    }).done(function(data) {
+        display_tweet(data);
+    });
+}
+
+function display_tweet(data){
+    $('#new-tweets').empty();
+    if(i <= data.length){
+        if(i == data.length){
+            i = 0;
+            get_tweets();
+        } else {
+            image = ' <img src=" '  + data[i].picture_url + ' " height="70" width="70"> ';
+            li    = '<p data-out-effect="fadeOut" >' + data[i].text +'</p>';
+            $('#new-tweets').append(image);
+            $('#new-tweets').append(li);
+            i++;
+            setTimeout(function() {
+                display_tweet(data);
+            }, 10000)
+        }
+    }
+}
 
 $(document).ready(function(){
-    var attemp_count = 0;
-
-    var auto_refresh = setInterval(function()
-    {
-        $.ajax({
-            url: 'twuserlookup.php'
-        }).done(function(data)
-        {
-            for (index = 0; index < data.length; ++index) {
-                $('#mydiv').append(data[index]);
-            }
-        });
-        if(attemp_count > 775)
-        {
-            clearInterval(auto_refresh);
-        }
-    }, 6000);
+    get_tweets();
 });
+
+
+
