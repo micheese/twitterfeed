@@ -18,9 +18,9 @@ function display_tweet(data){
             get_tweets();
         } else {
             image = ' <img src=" '  + data[i].picture_url + ' " height="70" width="70"> ';
-            li    = '<p data-out-effect="fadeOut" >' + data[i].text +'</p>';
+            text  = '<p class="text">' + data[i].text +'</p>';
             $('#new-tweets').append(image);
-            $('#new-tweets').append(li);
+            $('#new-tweets').append(text);
             i++;
             setTimeout(function() {
                 display_tweet(data);
