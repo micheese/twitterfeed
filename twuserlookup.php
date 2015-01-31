@@ -14,12 +14,18 @@ $connection = new TwitterOAuth('1DDT8L2qt34XRzPy3vR7nxad3', 'N8tB9tVvlLKEOIHjoxk
 $statues = updateStatus($connection);
 
 function updateStatus($connection){
-    $tweet_to_display = null;
-    $statues = $connection->get("search/tweets", array("q" => "athlemtl" , 'count' => 10));
-    foreach($statues->statuses as $status){
-        $tweet_to_display[] = $status->text;
+    $tweet_to_display = array();
+    $statues = $connection->get("statuses/user_timeline", array("screen_name" => "athlemtl" , 'count' => 10));
+
+
+    foreach($statues as $status){
+        $tweet_to_display[] = array(
+            'text' => $status->text,
+            'picture_url' => $status->user->profile_image_url);
     }
-    print(json_encode($tweet_to_display));
+
+    header('Content-Type: application/json');
+    print json_encode($tweet_to_display);
     exit();
 }
 
