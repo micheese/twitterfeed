@@ -11,7 +11,7 @@ require "vendor/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 $connection = new TwitterOAuth('1DDT8L2qt34XRzPy3vR7nxad3', 'N8tB9tVvlLKEOIHjoxkkNgyTi6zwiPBue2FOfJf1EepftQw05U', '220770919-sejeOEtBMqyrK3S6Z7SzdxNnEXAvHkbHaXcUEqdx', 'IQaTx7CL8lre4tPYpaF0VMlBmzdZBMbtJtdy8lhvVoW5F');
-$statues = updateStatus($connection);
+updateStatus($connection);
 
 function updateStatus($connection){
     $tweet_to_display = array();
