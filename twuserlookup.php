@@ -17,7 +17,6 @@ function updateStatus($connection){
     $tweet_to_display = array();
     $statues = $connection->get("statuses/user_timeline", array("screen_name" => "athlemtl" , 'count' => 10));
 
-
     foreach($statues as $status){
         $tweet_to_display[] = array(
             'text' => $status->text,
