@@ -19,7 +19,6 @@ function display_tweet(data){
         } else {
             image = ' <img src=" '  + data[i].picture_url + ' " height="70" width="70"> ';
             text  = '<p class="text">' + data[i].text +'</p>';
-            $('#new-tweets').append(image);
             $('#new-tweets').append(text);
             i++;
             setTimeout(function() {
